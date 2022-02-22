@@ -65,6 +65,60 @@ body {
   /* color: var(--White); */
   /* --fs-number: 1rem; */
 }
+.white {
+  background-color: var(--Light-gray-main-background);
+  color: var(--Very-dark-grayish-yellow);
+}
+.white .theme-switcher-graphic {
+  background-color: var(--Grayish-red-toggle-background-keypad-background);
+}
+.white .theme-switcher-ball {
+  background-color: var(--Orange-key-background-toggle);
+}
+.white .calculator--dp {
+  background-color: var(--Very-light-gray-screen-background);
+}
+.white .calc-keys {
+  background-color: var(--Grayish-red-toggle-background-keypad-background);
+  /* color: var(--Light-grayish-yellow-key-background); */
+}
+
+.neon {
+  background-color: var(--Very-dark-violet-main-background);
+  color: var(--Light-yellow);
+}
+.neon .theme-switcher-graphic,
+.neon .calculator--dp,
+.neon .calc-keys {
+  background-color: var(
+    --Very-dark-violet-toggle-background-keypad-background--screen--background
+  );
+  color: var(--Light-yellow);
+}
+.neon .theme-switcher-ball {
+  background-color: var(
+    --Very-dark-violet-toggle-background-keypad-background--screen--background
+  );
+}
+.neon .calc-keys > button {
+  /* background-color: var(--Dark-violet-key-background); */
+  background-color: var(--Very-dark-violet-key-background);
+  border-bottom: 4px solid var(--Vivid-magenta-key-shadow);
+}
+.neon .smaller-txt {
+  background-color: var(--Dark-violet-key-background) !important;
+  /* color: var(--White-text); */
+  color: white !important;
+}
+.neon .equals,
+.neon .theme-switcher-ball {
+  background-color: var(--Pure-cyan-key-background-toggle) !important;
+}
+.neon .equals {
+  color: black;
+  border-bottom: 4px solid var(--Soft-cyan-key-shadow) !important;
+}
+
 .calculator-cont {
   display: flex;
   justify-content: center;
@@ -127,7 +181,6 @@ body {
   border-radius: 50px;
   display: flex;
   align-items: center;
-  position: relative;
   cursor: pointer;
 }
 .theme-switcher-ball {
@@ -135,6 +188,12 @@ body {
   width: 15px;
   border-radius: 7.5px;
   background-color: var(--Red-key-background-toggle);
+  position: relative;
+  /* left: 23px; */
+  /* left: 46px; */
+  left: 3px;
+  transition: all 0.3s ease;
+  /* left: 43px; */
 }
 .calculator--dp {
   background-color: var(--Very-dark-desaturated-blue-screen-background);
@@ -166,7 +225,7 @@ body {
 }
 .calc-keys > button:focus,
 .calc-keys > button:hover {
-  outline: 2px solid whitesmoke;
+  outline: 4px solid var(--Very-dark-blue);
 }
 .calc-keys > button:active {
   transform: scale(0.95);
@@ -180,4 +239,5 @@ body {
 }
 .equals {
   grid-column: 3 / -1;
+  font-size: 1rem;
 }
