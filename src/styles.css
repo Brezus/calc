@@ -198,6 +198,12 @@ body {
 .calculator--dp {
   background-color: var(--Very-dark-desaturated-blue-screen-background);
   text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+.previous-input {
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 .calc-keys {
   display: grid;

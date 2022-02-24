@@ -56,3 +56,11 @@ ballToggle.addEventListener("click", () => {
     i = 1;
   }
 });
+
+const numbersKeys = document.querySelectorAll("[data-numbers]");
+const operationKeys = document.querySelectorAll("[data-operation]");
+const delKey = document.querySelector("[data-delete]");
+const resetKey = document.querySelector("[data-reset]");
+const equalKey = document.querySelector("[data-equals]");
+const previousOperandTextEl = document.querySelector("[data-previous-operand]");
+const currentOperandTextEl = document.querySelector("[data-current-operand]");
