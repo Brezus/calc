@@ -2,6 +2,7 @@ const numberThemes = document.querySelector(".theme-switcher");
 const ballToggle = document.querySelector(".theme-switcher-graphic");
 const ball = document.querySelector(".theme-switcher-ball");
 const themes = ["", "white", "neon"];
+const positions = [3, 24, 43];
 
 let target = "";
 let targetVal = 1;
@@ -11,16 +12,24 @@ let i = 2;
 
 numberThemes.addEventListener("click", (e) => {
   target = e.target.closest("p");
+  //   get the selected p tag 1 2 or 3
   if (!target) return;
+  //   stop function if we do not click on the target
   targetVal = target.innerText;
-  //   console.log(targetVal);
+  //   store the inner text of the element we clicked on
+  // pass targetVal to changeTheme function
   changeTheme(targetVal);
+  //   selects class from array using targetVal - 1 as index
   moveBall(leftVal);
+  console.log(ball);
+  //   function moves ball when called by leftVal px
 });
 
 function changeTheme(themeNum) {
+  // uses arg as index for array of class names aka themes variable
   document.body.className = themes[themeNum - 1];
   setLeftVal(themeNum);
+  //   function that updates leftVal's value so ball can move
 }
 
 function setLeftVal(val) {
@@ -39,10 +48,10 @@ function moveBall(valToMove) {
 
 ballToggle.addEventListener("click", () => {
   setLeftVal(i);
+  changeTheme(i);
   i++;
-  //   j++;
   moveBall(leftVal);
-  changeTheme(i - 1);
+  console.log(ball);
   if (i === 4) {
     i = 1;
   }
