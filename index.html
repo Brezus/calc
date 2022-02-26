@@ -30,6 +30,11 @@
       .attribution {
         font-size: 11px;
         text-align: center;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        display: inline-block;
+        transform: rotate(-90deg);
       }
       .attribution a {
         color: hsl(228, 45%, 44%);
@@ -54,14 +59,14 @@
           </div>
         </div>
         <div class="calculator--dp">
-          <div data-previous-operand class="previous-input">25</div>
-          <div data-current-operand class="current-input">0</div>
+          <div data-previous-operand class="previous-input"></div>
+          <div data-current-operand class="current-input"></div>
         </div>
         <div class="calc-keys">
           <button data-number>7</button>
           <button data-number>8</button>
           <button data-number>9</button>
-          <button data-delete class="smaller-txt" id="del">DELL</button>
+          <button data-delete class="smaller-txt" id="del">DEL</button>
           <button data-number>4</button>
           <button data-number>5</button>
           <button data-number>6</button>
@@ -73,7 +78,7 @@
           <button data-number>.</button>
           <button data-number>0</button>
           <button data-operation>/</button>
-          <button data-operation>x</button>
+          <button data-operation>*</button>
           <button data-reset class="span-two smaller-txt" id>RESET</button>
           <button data-equals class="span-two equals">=</button>
         </div>

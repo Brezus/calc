@@ -1,3 +1,73 @@
+class Calculator {
+  constructor(previousOperandTextEl, currentOperandTextEl) {
+    this.previousOperandTextEl = previousOperandTextEl;
+    this.currentOperandTextEl = currentOperandTextEl;
+    this.clear();
+  }
+
+  clear() {
+    this.previousOperand = "";
+    this.currentOperand = "";
+    this.operation = undefined;
+  }
+  appendNum(num) {
+    if (num === "." && this.currentOperand.includes(".")) return;
+    if (this.currentOperand === "") {
+      this.currentOperand = num;
+    } else {
+      this.currentOperand = this.currentOperand.toString() + num.toString();
+    }
+  }
+  updateDisplay() {
+    this.currentOperandTextEl.innerText = this.getDisplayNumber(
+      this.currentOperand
+    );
+    this.previousOperandTextEl.innerText = this.getDisplayNumber(
+      this.previousOperand
+    );
+  }
+  getDisplayNumber(num) {
+    return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+  chooseOperation(operation) {
+    if (this.currentOperand === "") return;
+    if (this.previousOperand != "") {
+      this.compute();
+    }
+    this.operation = operation;
+    this.previousOperand = `${this.currentOperand} ${this.operation}`;
+    this.currentOperand = "";
+  }
+  deleteOp() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+  }
+  compute() {
+    let computation;
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+    if (isNaN(prev) || isNaN(current)) return;
+    switch (this.operation) {
+      case "+":
+        computation = prev + current;
+        break;
+      case "-":
+        computation = prev - current;
+        break;
+      case "/":
+        computation = prev / current;
+        break;
+      case "*":
+        computation = prev * current;
+        break;
+      default:
+        return;
+    }
+    this.currentOperand = computation;
+    this.operation = undefined;
+    this.previousOperand = "";
+  }
+}
+
 const numberThemes = document.querySelector(".theme-switcher");
 const ballToggle = document.querySelector(".theme-switcher-graphic");
 const ball = document.querySelector(".theme-switcher-ball");
@@ -57,10 +127,41 @@ ballToggle.addEventListener("click", () => {
   }
 });
 
-const numbersKeys = document.querySelectorAll("[data-numbers]");
+const numberKeys = document.querySelectorAll("[data-number]");
 const operationKeys = document.querySelectorAll("[data-operation]");
 const delKey = document.querySelector("[data-delete]");
 const resetKey = document.querySelector("[data-reset]");
 const equalKey = document.querySelector("[data-equals]");
 const previousOperandTextEl = document.querySelector("[data-previous-operand]");
 const currentOperandTextEl = document.querySelector("[data-current-operand]");
+
+const calculator = new Calculator(previousOperandTextEl, currentOperandTextEl);
+
+numberKeys.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.appendNum(button.innerText);
+    calculator.updateDisplay();
+  });
+});
+
+operationKeys.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.chooseOperation(button.innerText);
+    calculator.updateDisplay();
+  });
+});
+
+resetKey.addEventListener("click", () => {
+  calculator.clear();
+  calculator.updateDisplay();
+});
+
+equalKey.addEventListener("click", (button) => {
+  calculator.compute();
+  calculator.updateDisplay();
+  console.log("bruh");
+});
+delKey.addEventListener("click", () => {
+  calculator.deleteOp();
+  calculator.updateDisplay();
+});
